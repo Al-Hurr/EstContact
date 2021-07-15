@@ -51,11 +51,10 @@ namespace EstContact.Controllers
             if(students[0].MessageCount == 0)
                 return Json("-1");
 
-            var senders = students.Where(x => x.MessageCount != 0).ToList();
-            students = students.OrderByDescending(x => x.MessageCount).ToList();
+            students = students.OrderBy(x => x.Id != 1).ThenByDescending(x => x.MessageCount).ToList();
 
             //Отправка сообщений, начиная с Поликарпа
-            foreach (var student in senders)
+            foreach (var student in students)
             {
                 var result = _studentsService.SendMessage(student, students);
                 response.AddRange(result);

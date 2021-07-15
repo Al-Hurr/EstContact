@@ -17,18 +17,17 @@ namespace EstContact.Services
         public List<string> SendMessage(Student student, List<Student> students)
         {
             List<string> response = new List<string>();
-            int messageCount = 0;
             foreach (var st in students)
             {
                 if (student.Id == st.Id || st.NotificationIsReceived)
                     continue;
 
-                if (messageCount == student.MessageCount)
+                if (student.MessageCount == 0)
                     break;
 
-                response.Add($"{student.Id} - {st.Id}");
+                response.Add($"{student.Id} {student.NotificationIsReceived} - {st.Id}");
                 st.NotificationIsReceived = true;
-                messageCount++;
+                student.MessageCount--;
             }
             return response;
         }
