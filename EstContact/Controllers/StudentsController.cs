@@ -25,8 +25,8 @@ namespace EstContact.Controllers
             return View();
         }
 
-        [HttpPost("{sudentsCount}/{messageCountById}")]
-        public IActionResult Post(int sudentsCount, string messageCountById)
+        [HttpPost("{studentsCount}/{messageCountById}")]
+        public IActionResult Post(int studentsCount, string messageCountById)
         {
             var messageCountArray = messageCountById.Trim().Split(' ');
             List<Student> students = new List<Student>();
